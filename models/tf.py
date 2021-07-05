@@ -459,7 +459,8 @@ if __name__ == "__main__":
             converter.experimental_new_converter = True
             tflite_model = converter.convert()
             f = opt.weights.replace('.pt', '-fp16.tflite')  # filename
-            open(f, "wb").write(tflite_model)
+            with open(f, "wb") as file:
+                file.write(tflite_model)
             print('\nTFLite export success, saved as %s' % f)
 
             # int8 TFLite model export ---------------------------------------------------------------------------------
@@ -482,7 +483,8 @@ if __name__ == "__main__":
                 converter.experimental_new_quantizer = False
                 tflite_model = converter.convert()
                 f = opt.weights.replace('.pt', '-int8.tflite')  # filename
-                open(f, "wb").write(tflite_model)
+                with open(f, "wb") as file:
+                    file.write(tflite_model)
                 print('\nTFLite (int8) export success, saved as %s' % f)
 
         except Exception as e:
